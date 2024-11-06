@@ -1,1 +1,1 @@
-# Major assinment (Individual part)
+# Major project (Individual part)
