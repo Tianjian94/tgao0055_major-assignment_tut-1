@@ -1,7 +1,7 @@
 # Major project (Individual part)
 
 ## Initial Code
-```
+``` js
 let shapes = [];
 
 // setup() function
@@ -157,4 +157,5 @@ class BauhausCloud extends BauhausShape {
   }
 }
 ```
+##  Inspiration
 
