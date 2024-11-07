@@ -165,4 +165,7 @@ Since our initial code was static, the inspiration I was looking for was dynamic
 
 ## Details of my code
 I choose the Perlin noise to drive my code.
+![1](assets/2.png)
+In the beginning, I set up the number of wave(5); limite the height of the wave; define the point of the wave(10); and set up noiseSeed to Control of Perlin noise effects in waves.
 
+![2](assets/3.png)
