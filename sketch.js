@@ -97,8 +97,19 @@ function draw() {
   }
   noiseSeed += 0.01;
 }
-
-
+// windowResized() function
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  skyWater = [];// Reset the sky and water
+  for (let y = 0; y < height / 2; y += 10) {
+    let skyColor = lerpColor(color(25, 60, 150), color(255, 190, 120), y / (height / 2));
+    skyWater.push(new BauhausRect(0, y, width, 10, skyColor)); 
+  }
+  for (let y = height / 2; y < height; y += 10) {
+    let waterColor = lerpColor(color(255, 150, 100), color(0, 100, 150), (y - height / 2) / (height / 2));
+    skyWater.push(new BauhausRect(0, y, width, 10, waterColor)); 
+  }
+} 
 
 // BauhausShape class
 class BauhausShape {
