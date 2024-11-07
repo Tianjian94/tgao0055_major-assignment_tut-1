@@ -9,10 +9,20 @@ let skyWater = [];// An array to store all sky and water lines
 
 // setup() function
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);// Create the canvas
+  maxHeight = height / 15;// Set the maximum height of the wave
+  noiseSeed = random(100);// Set the noise seed
   loop(); 
+  // Create the colour palettes
+  colourPalettes = [
+    [color ('#CADCFC'), color ('#8AB6F9')],
+    [color('#CEE6F2'), color ('#E3867D')],
+    [color('#DDDBDE'), color ('#656E77')],
+    [color(25, 60, 150, 180), color(255, 190, 120, 180), color(255, 150, 100, 180), color(0, 100, 150, 180)],
+  ];
+  selectedPalette = random(colourPalettes);// Randomly select a colour palette
   
-  //create the sky and water
+  //create the sky 
   for (let y = 0; y < height / 2; y += 10) {
     let skyColor = lerpColor(color(25, 60, 150), color(255, 190, 120), y / (height / 2));
     shapes.push(new BauhausRect(0, y, width, 10, skyColor)); 
