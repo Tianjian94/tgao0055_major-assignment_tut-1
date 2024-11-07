@@ -1,4 +1,11 @@
-
+let shapes = [];// Create an array to store all shapes
+let bauhausWave = 5;// Set the number of waves
+let maxHeight;// Set the maximum height of the wave
+let wavePointNumber = 10;// Set the number of points in each wave
+let noiseSeed;// Set the noise seed
+let colourPalettes;// Create an array to store all colour palettes
+let selectedPalette;// Set the selected colour palette
+let skyWater = [];// Create an array to store the sky and water
 
 
 // setup() function
