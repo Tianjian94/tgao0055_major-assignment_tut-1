@@ -175,6 +175,29 @@ let colourPalettes;// An array to store all colour palettes
 let selectedPalette;// The selected colour palette
 let skyWater = [];// An array to store all sky and water lines
 ```
-Annotation: In this stage, I set up the Dynamic drawing of wave scenes, changes in wave colour，and Sky and water level management 
+Annotation: In this stage, I set up the Dynamic drawing of wave scenes, changes in wave colour，and Sky and water level management.
 
+#### Iteration 2
+``` js
+// drawWave() function
+function drawWave(layer){
+  let baseHeight = map(layer, 0, bauhausWave, height / 2 , height);// Use map() to set up the base height
+  let waveNoiseSeed = noiseSeed + layer; // Add the layer to the noise seed
+  let waveColor = lerpColor(selectedPalette[0], selectedPalette[1], layer / bauhausWave);// Use lerpColor() to set up the wave color
+  fill(waveColor);
+  beginShape();
+  vertex(0, baseHeight);
+  // Draw the wave
+  for (i = 0; i <= width ;i += 10 ) {
+    let y = map(noise(waveNoiseSeed), 0, 1, -maxHeight, maxHeight);
+    curveVertex(i, baseHeight + y);
+    waveNoiseSeed += 0.015;
+  }
 
+vertex(width, baseHeight);
+vertex(width, height);
+vertex(0, height);
+  endShape(CLOSE);
+}
+```
+ Annotation: In this stage, 
