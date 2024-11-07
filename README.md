@@ -169,3 +169,4 @@ I choose the Perlin noise to drive my code.
 In the beginning, I set up the number of wave(5); limite the height of the wave; define the point of the wave(10); and set up noiseSeed to Control of Perlin noise effects in waves.
 
 ![2](assets/3.png)
+In this stage, I use drawWave function to generate dynamic wave effect. Through perlin noise and  colour gradients to generate  natural undulation effects for each layer of waves.
