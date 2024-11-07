@@ -1,38 +1,27 @@
-let shapes = [];// Create an array to store all shapes
-let bauhausWave = 5;// Set the number of waves
-let maxHeight;// Set the maximum height of the wave
-let wavePointNumber = 10;// Set the number of points in each wave
-let noiseSeed;// Set the noise seed
-let colourPalettes;// Create an array to store all colour palettes
-let selectedPalette;// Set the selected colour palette
-let skyWater = [];// Create an array to store the sky and water
+let shapes = [];// An array to store all shapes
+let bauhausWave = 5;// The number of waves
+let maxHeight;// The maximum height of the wave
+let wavePointNumber = 10;// The number of points in each wave
+let noiseSeed;// The noise seed
+let colourPalettes;// An array to store all colour palettes
+let selectedPalette;// The selected colour palette
+let skyWater = [];// An array to store all sky and water lines
 
 // setup() function
 function setup() {
-  createCanvas(windowWidth, windowHeight);// Create the canvas
-  maxHeight = height / 15;// Set the maximum height of the wave
-  noiseSeed = random(100);// Set the noise seed
+  createCanvas(800, 600);
   loop(); 
-  // Create the colour palettes
-  colourPalettes = [
-    [color ('#CADCFC'), color ('#8AB6F9')],
-    [color('#CEE6F2'), color ('#E3867D')],
-    [color('#DDDBDE'), color ('#656E77')],
-    [color(25, 60, 150, 180), color(255, 190, 120, 180), color(255, 150, 100, 180), color(0, 100, 150, 180)],
-  ];
-  selectedPalette = random(colourPalettes);// Randomly select a colour palette
-
-
-  //create the sky 
+  
+  //create the sky and water
   for (let y = 0; y < height / 2; y += 10) {
     let skyColor = lerpColor(color(25, 60, 150), color(255, 190, 120), y / (height / 2));
-    skyWater.push(new BauhausRect(0, y, width, 10, skyColor)); 
+    shapes.push(new BauhausRect(0, y, width, 10, skyColor)); 
   }
 
  //create the water
   for (let y = height / 2; y < height; y += 10) {
     let waterColor = lerpColor(color(255, 150, 100), color(0, 100, 150), (y - height / 2) / (height / 2));
-    skyWater.push(new BauhausRect(0, y, width, 10, waterColor)); 
+    shapes.push(new BauhausRect(0, y, width, 10, waterColor)); 
   }
 
   //create the building
@@ -45,7 +34,11 @@ function setup() {
   shapes.push(new BauhausRect(230, 450, 50, 80, color(20, 10, 60, 80))); // middle reflection, transparent purple
   shapes.push(new BauhausRect(250, 500, 30, 60, color(150, 30, 80, 80))); // bottom reflection, transparent red
 
- 
+  // Add the windows of the building
+  for (let i = 0; i < 20; i++) {
+    shapes.push(new BauhausLine(random(width), random(height / 2, height), random(50, 150), 0, color(255, 100, 50, 100))); 
+  }
+
   // Add the sun
   shapes.push(new BauhausCircle(600, 100, 80, color(255, 200, 50, 180))); 
 
@@ -57,34 +50,10 @@ function setup() {
   shapes.push(new BauhausCloud(750, 120, 85, 220)); // The fifth cloud
 }
 
-// drawWave() function
-function drawWave(layer){
-  let baseHeight = map(layer, 0, bauhausWave, height / 2 , height);// Use map() to set up the base height
-  let waveNoiseSeed = noiseSeed + layer; // Add the layer to the noise seed
-  let waveColor = lerpColor(selectedPalette[0], selectedPalette[1], layer / bauhausWave);// Use lerpColor() to set up the wave color
-  fill(waveColor);
-  beginShape();
-  vertex(0, baseHeight);
-  // Draw the wave
-  for (i = 0; i <= width ;i += 10 ) {
-    let y = map(noise(waveNoiseSeed), 0, 1, -maxHeight, maxHeight);
-    curveVertex(i, baseHeight + y);
-    waveNoiseSeed += 0.015;
-  }
-
-vertex(width, baseHeight);
-vertex(width, height);
-vertex(0, height);
-  endShape(CLOSE);
-}
-
 // draw() function
 function draw() {
   background(255);
-  for (let skyLine of skyWater) {
-    skyLine.draw();
-  }
-
+  
   // Draw all shapes
   for (let shape of shapes) {
     shape.draw();
@@ -92,24 +61,7 @@ function draw() {
       shape.move(); // Move the clouds
     }
   }
-  for (let i = 0; i < bauhausWave; i++) {
-    drawWave(i);
-  }
-  noiseSeed += 0.01;
 }
-// windowResized() function
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  skyWater = [];// Reset the sky and water
-  for (let y = 0; y < height / 2; y += 10) {
-    let skyColor = lerpColor(color(25, 60, 150), color(255, 190, 120), y / (height / 2));
-    skyWater.push(new BauhausRect(0, y, width, 10, skyColor)); 
-  }
-  for (let y = height / 2; y < height; y += 10) {
-    let waterColor = lerpColor(color(255, 150, 100), color(0, 100, 150), (y - height / 2) / (height / 2));
-    skyWater.push(new BauhausRect(0, y, width, 10, waterColor)); 
-  }
-} 
 
 // BauhausShape class
 class BauhausShape {
@@ -172,8 +124,8 @@ class BauhausLine {
 
 // Cloud class，Use multiple circles to form clouds and add motion effects
 class BauhausCloud extends BauhausShape {
-  constructor(x, y, size) {
-    super(x, y, random(selectedPalette)); 
+  constructor(x, y, size, alpha) {
+    super(x, y, color(255, 255, 255, alpha)); 
     this.size = size; // The size of the cloud
     this.speedX = random(0.2, 1); // The random speed of the cloud on the x-axis (move left and right)
     this.speedY = random(-0.2, 0.2); // The random speed of the cloud on the y-axis (move up and down)
@@ -200,7 +152,6 @@ class BauhausCloud extends BauhausShape {
     // If the cloud moves out of the left edge of the canvas, reset its position to the right edge
     if (this.x > width + this.size) {
       this.x = -this.size;
-      this.color = random(selectedPalette);
     }
     // If the cloud moves out of the top or bottom edge of the canvas, reverse its moving direction
     if (this.y > height / 2 || this.y < 0) {
@@ -208,5 +159,3 @@ class BauhausCloud extends BauhausShape {
     }
   }
 }
-
-
