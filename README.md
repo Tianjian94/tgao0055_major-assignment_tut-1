@@ -1,6 +1,6 @@
 # Major project (Individual part)
 
-## Initial Code
+## Group Code
 ``` js
 let shapes = [];
 
@@ -162,3 +162,6 @@ class BauhausCloud extends BauhausShape {
 ![inspiation image](assets/1.png)
 #### This is the link: [Link text](https://openprocessing.org/sketch/2383330)
 Since our initial code was static, the inspiration I was looking for was dynamic water ripples，details in video. So I wanted to make the static water surface dynamic, hence the addition of waves and different colours. 
+
+#### Details of my code
+I choose the Perlin noise to drive my code.
