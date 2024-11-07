@@ -161,12 +161,20 @@ class BauhausCloud extends BauhausShape {
 #### Screenshot
 ![inspiation image](assets/1.png)
 #### This is the link: [Link text](https://openprocessing.org/sketch/2383330)
-Since our initial code was static, the inspiration I was looking for was dynamic water ripples，details in video. So I wanted to make the static water surface dynamic, hence the addition of waves and different colours. 
+Since our initial code was static, the inspiration I was looking for was dynamic water ripples，details in video. So I wanted to make the static water surface dynamic, hence the addition of waves and different colours. Aditionally,  
 
 ## Details of my code
-I choose the Perlin noise to drive my code.
-![1](assets/2.png)
-In the beginning, I set up the number of wave(5); limite the height of the wave; define the point of the wave(10); and set up noiseSeed to Control of Perlin noise effects in waves.
+#### Iteration 1
+``` js
+let shapes = [];// An array to store all shapes
+let bauhausWave = 5;// The number of waves
+let maxHeight;// The maximum height of the wave
+let wavePointNumber = 10;// The number of points in each wave
+let noiseSeed;// The noise seed
+let colourPalettes;// An array to store all colour palettes
+let selectedPalette;// The selected colour palette
+let skyWater = [];// An array to store all sky and water lines
+```
+Annotation: In this stage, I set up the Dynamic drawing of wave scenes, changes in wave colour，and Sky and water level management 
 
-![2](assets/3.png)
-In this stage, I use drawWave function to generate dynamic wave effect. Through perlin noise and  colour gradients to generate  natural undulation effects for each layer of waves.
+
