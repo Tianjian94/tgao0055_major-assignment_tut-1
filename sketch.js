@@ -1,11 +1,4 @@
-let shapes = [];
-let bauhausWave = 5;
-let maxHeight;
-let wavePointNumber = 10;
-let noiseSeed;
-let colourPalettes;
-let selectedPalette;
-let skyWater = [];
+
 
 
 // setup() function
@@ -14,13 +7,14 @@ function setup() {
   maxHeight = height / 15;
   noiseSeed = random(100);
   loop(); 
+  // Create the colour palettes
   colourPalettes = [
     [color ('#CADCFC'), color ('#8AB6F9')],
     [color('#CEE6F2'), color ('#E3867D')],
     [color('#DDDBDE'), color ('#656E77')],
     [color(25, 60, 150, 180), color(255, 190, 120, 180), color(255, 150, 100, 180), color(0, 100, 150, 180)],
   ];
-  selectedPalette = random(colourPalettes);
+  selectedPalette = random(colourPalettes);// Randomly select a colour palette
 
 
   //create the sky 
@@ -56,14 +50,15 @@ function setup() {
   shapes.push(new BauhausCloud(650, 80, 130, 200)); // The fourth cloud
   shapes.push(new BauhausCloud(750, 120, 85, 220)); // The fifth cloud
 }
-
+// drawWave() function
 function drawWave(layer){
-  let baseHeight = map(layer, 0, bauhausWave, height / 2 , height);
-  let waveNoiseSeed = noiseSeed + layer;
-  let waveColor = lerpColor(selectedPalette[0], selectedPalette[1], layer / bauhausWave);
+  let baseHeight = map(layer, 0, bauhausWave, height / 2 , height);// Use map() to set up the base height
+  let waveNoiseSeed = noiseSeed + layer; // Add the layer to the noise seed
+  let waveColor = lerpColor(selectedPalette[0], selectedPalette[1], layer / bauhausWave);// Use lerpColor() to set up the wave color
   fill(waveColor);
   beginShape();
   vertex(0, baseHeight);
+  // Draw the wave
   for (i = 0; i <= width ;i += 10 ) {
     let y = map(noise(waveNoiseSeed), 0, 1, -maxHeight, maxHeight);
     curveVertex(i, baseHeight + y);
