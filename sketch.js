@@ -164,6 +164,7 @@ class BauhausCloud extends BauhausShape {
     // If the cloud moves out of the left edge of the canvas, reset its position to the right edge
     if (this.x > width + this.size) {
       this.x = -this.size;
+      this.color = random(selectedPalette);
     }
     // If the cloud moves out of the top or bottom edge of the canvas, reverse its moving direction
     if (this.y > height / 2 || this.y < 0) {
