@@ -25,14 +25,14 @@ function setup() {
   //create the sky 
   for (let y = 0; y < height / 2; y += 10) {
     let skyColor = lerpColor(color(25, 60, 150), color(255, 190, 120), y / (height / 2));
-    shapes.push(new BauhausRect(0, y, width, 10, skyColor)); 
+    skyWater.push(new BauhausRect(0, y, width, 10, skyColor)); 
   }
 
  //create the water
-  for (let y = height / 2; y < height; y += 10) {
-    let waterColor = lerpColor(color(255, 150, 100), color(0, 100, 150), (y - height / 2) / (height / 2));
-    shapes.push(new BauhausRect(0, y, width, 10, waterColor)); 
-  }
+ for (let y = height / 2; y < height; y += 10) {
+  let waterColor = lerpColor(color(255, 150, 100), color(0, 100, 150), (y - height / 2) / (height / 2));
+  skyWater.push(new BauhausRect(0, y, width, 10, waterColor)); 
+}
 
   //create the building
   shapes.push(new BauhausRect(220, 80, 30, 100, color(0, 0, 0))); //left part
@@ -44,10 +44,6 @@ function setup() {
   shapes.push(new BauhausRect(230, 450, 50, 80, color(20, 10, 60, 80))); // middle reflection, transparent purple
   shapes.push(new BauhausRect(250, 500, 30, 60, color(150, 30, 80, 80))); // bottom reflection, transparent red
 
-  // Add the windows of the building
-  for (let i = 0; i < 20; i++) {
-    shapes.push(new BauhausLine(random(width), random(height / 2, height), random(50, 150), 0, color(255, 100, 50, 100))); 
-  }
 
   // Add the sun
   shapes.push(new BauhausCircle(600, 100, 80, color(255, 200, 50, 180))); 
@@ -73,7 +69,46 @@ function drawWave(layer){
     let y = map(noise(waveNoiseSeed), 0, 1, -maxHeight, maxHeight);
     curveVertex(i, baseHeight + y);
     waveNoiseSeed += 0.015;
+    
+    vertex(width, baseHeight);
+vertex(width, height);
+vertex(0, height);
+  endShape(CLOSE);
   }
+
+// draw() function
+function draw() {
+  background(255);
+  for (let skyLine of skyWater) {
+    skyLine.draw();
+  }
+
+  // Draw all shapes
+  for (let shape of shapes) {
+    shape.draw();
+    if (shape instanceof BauhausCloud) {
+      shape.move(); // Move the clouds
+    }
+  }
+  for (let i = 0; i < bauhausWave; i++) {
+    drawWave(i);
+  }
+  noiseSeed += 0.01;
+}  
+
+// windowResized() function
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  skyWater = [];// Reset the sky and water
+  for (let y = 0; y < height / 2; y += 10) {
+    let skyColor = lerpColor(color(25, 60, 150), color(255, 190, 120), y / (height / 2));
+    skyWater.push(new BauhausRect(0, y, width, 10, skyColor)); 
+  }
+  for (let y = height / 2; y < height; y += 10) {
+    let waterColor = lerpColor(color(255, 150, 100), color(0, 100, 150), (y - height / 2) / (height / 2));
+    skyWater.push(new BauhausRect(0, y, width, 10, waterColor)); 
+  }
+} 
 
 // BauhausShape class
 class BauhausShape {
@@ -136,8 +171,8 @@ class BauhausLine {
 
 // Cloud class，Use multiple circles to form clouds and add motion effects
 class BauhausCloud extends BauhausShape {
-  constructor(x, y, size, alpha) {
-    super(x, y, color(255, 255, 255, alpha)); 
+  constructor(x, y, size, ) {
+    super(x, y, random(selectedPalette)); 
     this.size = size; // The size of the cloud
     this.speedX = random(0.2, 1); // The random speed of the cloud on the x-axis (move left and right)
     this.speedY = random(-0.2, 0.2); // The random speed of the cloud on the y-axis (move up and down)
