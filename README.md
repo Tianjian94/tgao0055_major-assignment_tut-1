@@ -212,11 +212,13 @@ function setup() {
   loop(); 
   // Create the colour palettes
   colourPalettes = [
-    [color ('#CADCFC'), color ('#8AB6F9')],
-    [color('#CEE6F2'), color ('#E3867D')],
-    [color('#DDDBDE'), color ('#656E77')],
+    [color (202, 220, 252), color (38, 182, 249)],
+    [color(206, 230, 242), color ('#E3867D')],
+    [color(221, 219, 222), color (101, 110, 119)],
     [color(25, 60, 150, 180), color(255, 190, 120, 180), color(255, 150, 100, 180), color(0, 100, 150, 180)],
   ];
   selectedPalette = random(colourPalettes);// Randomly select a colour palette
  ```
-  Annotation:
+  Annotation: IN this stage, I make the canva size adapts to the screen, set up the changes of height in waves and dynamic effects, and use multiple colour palettes and randomly select
+
+  
