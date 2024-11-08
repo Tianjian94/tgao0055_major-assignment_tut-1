@@ -124,3 +124,7 @@ function windowResized() {
 + In this stage, I want the canvas size to change dynamically along with the object when I resize the window. 
 + I set up windowresized function to adapt the different size of the screen and use skywater, bauhausrect to control the objects in order to adapt the changes of the screen. 
 
+#### Conclusion
++ Classes: 5 classes (BauhausShape, BauhausRect, BauhausCircle, BauhausLine, and BauhausCloud)
++ Functions: 4 main functions (setup( ), draw( ), drawWave( ), and windowResized( ))
++ Methods: draw( ) method, BauhausCloud includes a move( ) method.
