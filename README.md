@@ -200,7 +200,7 @@ vertex(0, height);
   endShape(CLOSE);
 }
 ```
- Annotation: In this stage, I use Perlin noise to generate wave shapes, which vary smoothly in the horizontal direction, set the wave height and colour to create a dynamic water effect, and use gradient colours and dynamic height changes to make the waves look more natural.
+ Annotation: In this stage, I want to draw the dynamic waves so I use Perlin noise to generate wave shapes, which vary smoothly in the horizontal direction, set the wave height and colour to create a dynamic water effect, and use gradient colours and dynamic height changes to make the waves look more natural.
 
  #### Iteration 3
  ``` js
@@ -221,4 +221,23 @@ function setup() {
  ```
   Annotation: IN this stage, I make the canva size adapts to the screen, set up the changes of height in waves and dynamic effects, and use multiple colour palettes and randomly select
 
-  
+#### Iteration 4
+``` js
+  // Move the cloud
+  move() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // If the cloud moves out of the left edge of the canvas, reset its position to the right edge
+    if (this.x > width + this.size) {
+      this.x = -this.size;
+      this.color = random(selectedPalette);
+    }
+    // If the cloud moves out of the top or bottom edge of the canvas, reverse its moving direction
+    if (this.y > height / 2 || this.y < 0) {
+      this.speedY *= -1;
+    }
+  }
+```
+Annotation: In this stage, I want to change the colour of the clouds to resemble the colour of the water. So, I set it up to randomly select a new colour from selectedPalette when the cloud resets its position and make the colour of the cloud change when they resets its position.
+
