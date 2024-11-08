@@ -137,7 +137,7 @@ function windowResized() {
 + In this stage, I want the canvas size to change dynamically along with the object when I resize the window. 
 + I set up windowresized function to adapt the different size of the screen and use skywater, bauhausrect to control the objects in order to adapt the changes of the screen. 
 
-#### Conclusion
+### Conclusion
 **Wave analysis**
 + Based on Perlin noise, dynamic height variations of waves can be generated. Further, by combining the colour gradient technique, it is possible to achieve smoothness and continuity of the water surface effect.This approach not only ensures the dynamic generation of wave heights, but also results in a natural and continuous gradient in the colour representation of the water.
 + NoiseSeed ensures that the wave form changes subtly with each frame. This update strategy is essential to simulate the dynamics of natural water flow effects. The constantly updated noiseSeed enables the randomness and continuity of waves, thus reproducing more realistically the complex dynamics of natural water flows.
