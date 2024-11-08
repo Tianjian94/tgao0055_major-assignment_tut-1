@@ -128,3 +128,6 @@ function windowResized() {
 + Classes: 5 classes (BauhausShape, BauhausRect, BauhausCircle, BauhausLine, and BauhausCloud)
 + Functions: 4 main functions (setup( ), draw( ), drawWave( ), and windowResized( ))
 + Methods: draw( ) method, BauhausCloud includes a move( ) method.
+
+I use chatGpt and deepl to inspire visual design and report writing.
+
