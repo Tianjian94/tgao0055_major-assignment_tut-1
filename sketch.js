@@ -5,7 +5,7 @@ let wavePointNumber = 10;// Set the number of points in each wave
 let noiseSeed;// Set the noise seed
 let colourPalettes;// Create an array to store all colour palettes
 let selectedPalette;// Set the selected colour palette
-let skyWater = [];// Create an array to store the sky and water
+let skyWater = [];// Create an array to store the sky 
 
 // setup() function
 function setup() {
