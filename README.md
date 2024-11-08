@@ -2,7 +2,7 @@
 ##  Inspiration
 #### Screenshot
 ![inspiation image](assets/1.png)
-#### This is the link: [Link text](https://openprocessing.org/sketch/2383330)
+#### This is the inspiration code link: [Link text](https://openprocessing.org/sketch/2383330)
 Since our initial code was static, the inspiration I was looking for was dynamic water ripples，(details in video). So I wanted to make the static water surface dynamic in order to simulate the real waves,and create gradient colours for waves.     
 
 ## Details of my code
@@ -12,6 +12,12 @@ Since our initial code was static, the inspiration I was looking for was dynamic
 + Changes the colour of the cloud when it resets its position.
 + Colour variations are similar in waves and clouds (same palette).
 + Changes the colour of the waves and clouds when you refresh the screen.
+
+**Difference:**
++ Zichen Qiao：Change the trajectory of an object.
++ Rachel Huang:  Add music and animation.
++ Jiarui Song: Add buttons to control the objects.
++ Me: Change the state of motion of an object (static to dynamic)，Add a colour change effect.
 
 **I choose the Perlin noise to drive my code**
 #### Iteration 1
