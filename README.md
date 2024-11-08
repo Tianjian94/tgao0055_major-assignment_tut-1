@@ -200,4 +200,23 @@ vertex(0, height);
   endShape(CLOSE);
 }
 ```
- Annotation: In this stage, 
+ Annotation: In this stage, I use Perlin noise to generate wave shapes, which vary smoothly in the horizontal direction, set the wave height and colour to create a dynamic water effect, and use gradient colours and dynamic height changes to make the waves look more natural.
+
+ #### Iteration 3
+ ``` js
+// setup() function
+function setup() {
+  createCanvas(windowWidth, windowHeight);// Create the canvas
+  maxHeight = height / 15;// Set the maximum height of the wave
+  noiseSeed = random(100);// Set the noise seed
+  loop(); 
+  // Create the colour palettes
+  colourPalettes = [
+    [color ('#CADCFC'), color ('#8AB6F9')],
+    [color('#CEE6F2'), color ('#E3867D')],
+    [color('#DDDBDE'), color ('#656E77')],
+    [color(25, 60, 150, 180), color(255, 190, 120, 180), color(255, 150, 100, 180), color(0, 100, 150, 180)],
+  ];
+  selectedPalette = random(colourPalettes);// Randomly select a colour palette
+ ```
+  Annotation:
